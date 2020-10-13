@@ -11,9 +11,9 @@ import "./SampleWorks.css";
 const SampleWorks = () => {
   return (
     <div className="sample-works">
-      <h3 className="text-center text-white mb-3">
+      <h2 className="text-center text-white mb-3">
         Here are some of <span style={{ color: "#7AB259" }}>our works</span>
-      </h3>
+      </h2>
       <Carousel>
         <Carousel.Item>
           <img

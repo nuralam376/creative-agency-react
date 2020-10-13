@@ -32,9 +32,9 @@ const servicesData = [
 const Services = () => {
   return (
     <Container className="services my-5">
-      <h3 className="text-center">
+      <h2 className="text-center">
         Provide awesome <span style={{ color: "#7AB259" }}>services</span>{" "}
-      </h3>
+      </h2>
 
       <Row className="mt-5 mx-auto text-center">
         {servicesData.map((service) => (
