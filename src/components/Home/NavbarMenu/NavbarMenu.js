@@ -7,16 +7,24 @@ const NavbarMenu = () => {
   return (
     <div className="container">
       <Navbar variant="light" expand="lg">
-        <Navbar.Brand href="/">
+        <Navbar.Brand>
           <Image src={logo} className="w-25 img-fluid" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/">Our Portfolio</Nav.Link>
-            <Nav.Link href="/">Contact Us</Nav.Link>
-            <Nav.Link href="/">Our Team</Nav.Link>
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
+            <Link to="/" className="nav-link">
+              Our Portfolio
+            </Link>
+            <Link to="/" className="nav-link">
+              Contact Us
+            </Link>
+            <Link to="/" className="nav-link">
+              Our Team
+            </Link>
           </Nav>
 
           <Link to="/login" className="nav-link">
