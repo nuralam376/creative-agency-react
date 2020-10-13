@@ -8,7 +8,7 @@ import Services from "../Services/Services";
 
 const Home = () => {
   return (
-    <div>
+    <div style={{ backgroundColor: "#E5E5E5" }}>
       <Header />
       <Partners />
       <Services />

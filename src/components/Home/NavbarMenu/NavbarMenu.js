@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Image, Nav, Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import logo from "../../../images/logos/logo.png";
 
 const NavbarMenu = () => {
@@ -17,9 +18,10 @@ const NavbarMenu = () => {
             <Nav.Link href="/">Contact Us</Nav.Link>
             <Nav.Link href="/">Our Team</Nav.Link>
           </Nav>
-          <Nav.Link href="/">
+
+          <Link to="/login" className="nav-link">
             <Button variant="dark">Login</Button>
-          </Nav.Link>
+          </Link>
         </Navbar.Collapse>
       </Navbar>
     </div>
