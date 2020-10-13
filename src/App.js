@@ -4,6 +4,7 @@ import "./App.css";
 import Home from "./components/Home/Home/Home";
 import Login from "./components/Login/Login";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Dashboard from "./components/Dashboard/Dashboard/Dashboard";
 
 export const UserContext = createContext();
 
@@ -24,6 +25,9 @@ function App() {
             </Route>
             <Route exact path="/login">
               <Login />
+            </Route>
+            <Route exact path="/dashboard">
+              <Dashboard />
             </Route>
           </Switch>
         </Router>

@@ -30,6 +30,9 @@ const NavbarMenu = () => {
           <Link to="/login" className="nav-link">
             <Button variant="dark">Login</Button>
           </Link>
+          <Link to="/dashboard" className="nav-link">
+            <Button variant="secondary">Dashboard</Button>
+          </Link>
         </Navbar.Collapse>
       </Navbar>
     </div>
