@@ -14,6 +14,21 @@ const Login = () => {
 
   const { from } = location.state || { from: { pathname: "/dashboard" } };
 
+  const isAdminCheck = (email) => {
+    fetch("http://localhost:5000/isAdminCheck", {
+      method: "POST",
+      body: JSON.stringify({ email }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setLoggedInUser({ ...loggedInUser, isAdmin: data });
+      })
+      .catch(() => alert("Something went wrong"));
+  };
+
   const googleLogin = () => {
     let userInfo = { ...loggedInUser };
     firebaseGoogleLogin()
@@ -22,8 +37,10 @@ const Login = () => {
           userInfo.isLoggedIn = true;
           userInfo.name = result.displayName;
           userInfo.email = result.email;
+          userInfo.image = result.photoURL;
           userInfo.error = null;
           setLoggedInUser(userInfo);
+          isAdminCheck(result.email);
           history.replace(from);
         } else {
           userInfo.error = result;
@@ -62,7 +79,7 @@ const Login = () => {
         )}
         {loggedInUser.isLoggedIn && (
           <>
-            <p className="text-success">User is now logged in</p>
+            <p className="text-success">User is now logged in </p>
             <Button variant="danger" onClick={googleLogout}>
               Log out
             </Button>

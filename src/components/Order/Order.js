@@ -29,7 +29,13 @@ const Order = () => {
             <br />
             <input
               name="email"
-              ref={register({ required: true })}
+              ref={register({
+                required: true,
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "invalid email address",
+                },
+              })}
               className="form-control w-50"
               placeholder="Your email address"
             />
@@ -54,7 +60,7 @@ const Order = () => {
             {/* errors will return when field validation fails  */}
             {errors.detail && <span>This field is required</span>}
             <br />
-            <textarea
+            <input
               name="price"
               ref={register({ required: true })}
               className="form-control w-50"

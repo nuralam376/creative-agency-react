@@ -19,6 +19,8 @@ function App() {
     name: null,
     email: null,
     error: null,
+    isAdmin: false,
+    image: null,
   });
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
