@@ -5,8 +5,24 @@ import Sidebar from "../Dashboard/Sidebar/Sidebar";
 import { useForm } from "react-hook-form";
 
 const MakeAdmin = () => {
-  const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { register, handleSubmit, reset, errors } = useForm();
+  const onSubmit = (data) => {
+    fetch("http://localhost:5000/makeadmin", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          alert("Set email address as admin successfully");
+          reset();
+        }
+      })
+      .catch(() => alert("Something went wrong"));
+  };
 
   return (
     <div>
@@ -22,13 +38,22 @@ const MakeAdmin = () => {
             <br />
             <input
               name="email"
-              ref={register({ required: true })}
+              ref={register({
+                required: true,
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "invalid email address",
+                },
+              })}
               placeholder="jon@gmail.com"
               className="form-control w-25 d-inline"
             />
             {/* errors will return when field validation fails  */}
-            {errors.email && <span>This field is required</span>}
             <input type="submit" className="btn btn-success d-inline" />
+            <br />
+            {errors.email && (
+              <span className="text-danger">* Invalid Email address</span>
+            )}
           </form>
         </Col>
       </Row>
