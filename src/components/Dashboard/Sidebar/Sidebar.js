@@ -17,7 +17,10 @@ const Sidebar = () => {
           </Link>
         </Nav.Item>
         <Nav.Item>
-          <Link to="/servicelist" className="nav-link text-dark">
+          <Link
+            to={loggedInUser.isAdmin ? "/servicelist" : "/clientservicelist"}
+            className="nav-link text-dark"
+          >
             Service List
           </Link>
         </Nav.Item>

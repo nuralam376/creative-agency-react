@@ -12,7 +12,11 @@ const Login = () => {
   const history = useHistory();
   const location = useLocation();
 
-  const { from } = location.state || { from: { pathname: "/dashboard" } };
+  const { from } = location.state || {
+    from: {
+      pathname: "/",
+    },
+  };
 
   const isAdminCheck = (email) => {
     return fetch("http://localhost:5000/isAdminCheck", {

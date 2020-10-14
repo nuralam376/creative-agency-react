@@ -1,9 +1,13 @@
 import React from "react";
+import { useContext } from "react";
 import { Button, Image, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../../App";
 import logo from "../../../images/logos/logo.png";
 
 const NavbarMenu = () => {
+  const [loggedInUser] = useContext(UserContext);
+
   return (
     <div className="container">
       <Navbar variant="light" expand="lg">
@@ -27,12 +31,23 @@ const NavbarMenu = () => {
             </Link>
           </Nav>
 
-          <Link to="/login" className="nav-link">
-            <Button variant="dark">Login</Button>
-          </Link>
-          <Link to="/dashboard" className="nav-link">
-            <Button variant="secondary">Dashboard</Button>
-          </Link>
+          {loggedInUser.isLoggedIn ? (
+            <>
+              <Link
+                to={loggedInUser.isAdmin ? "/servicelist" : "clientservicelist"}
+                className="nav-link"
+              >
+                <Button variant="secondary">Dashboard</Button>
+              </Link>
+              <Link to="/login" className="nav-link">
+                <Button variant="danger">Logout</Button>
+              </Link>
+            </>
+          ) : (
+            <Link to="/login" className="nav-link">
+              <Button variant="dark">Login</Button>
+            </Link>
+          )}
         </Navbar.Collapse>
       </Navbar>
     </div>

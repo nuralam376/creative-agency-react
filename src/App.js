@@ -35,10 +35,10 @@ function App() {
             <Route exact path="/login">
               <Login />
             </Route>
-            <PrivateRoute exact path="/dashboard">
+            <PrivateRoute exact path="/servicelist">
               <ServicesList />
             </PrivateRoute>
-            <PrivateRoute exact path="/servicelist">
+            <PrivateRoute exact path="/clientservicelist">
               <ClientServiceList />
             </PrivateRoute>
             <PrivateRoute exact path="/addservice">
