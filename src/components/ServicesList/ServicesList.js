@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Row, Table } from "react-bootstrap";
+import { Col, Row, Table } from "react-bootstrap";
 import DashboardHeader from "../Dashboard/DashboardHeader/DashboardHeader";
 import Sidebar from "../Dashboard/Sidebar/Sidebar";
 

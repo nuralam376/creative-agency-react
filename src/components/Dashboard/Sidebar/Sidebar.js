@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Image, Nav, Navbar, NavbarC } from "react-bootstrap";
+import { Image, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logo from "../../../images/logos/logo.png";
 import "./Sidebar.css";

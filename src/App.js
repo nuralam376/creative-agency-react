@@ -10,6 +10,8 @@ import {
   Switch,
 } from "react-router-dom";
 import ServicesList from "./components/ServicesList/ServicesList";
+import AddService from "./components/AddService/AddService";
+import MakeAdmin from "./components/MakeAdmin/MakeAdmin";
 
 export const UserContext = createContext();
 
@@ -37,8 +39,13 @@ function App() {
             <Route exact path="/servicelist">
               <ServicesList />
             </Route>
+            <Route exact path="/addservice">
+              <AddService />
+            </Route>
+            <Route exact path="/makeadmin">
+              <MakeAdmin />
+            </Route>
           </Switch>
-          <Redirect from="/dashboard" to="/servicelist" />
         </Router>
       </div>
     </UserContext.Provider>
