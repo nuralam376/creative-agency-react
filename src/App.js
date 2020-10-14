@@ -3,8 +3,13 @@ import { createContext } from "react";
 import "./App.css";
 import Home from "./components/Home/Home/Home";
 import Login from "./components/Login/Login";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Dashboard from "./components/Dashboard/Dashboard/Dashboard";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
+import ServicesList from "./components/ServicesList/ServicesList";
 
 export const UserContext = createContext();
 
@@ -27,9 +32,13 @@ function App() {
               <Login />
             </Route>
             <Route exact path="/dashboard">
-              <Dashboard />
+              <ServicesList />
+            </Route>
+            <Route exact path="/servicelist">
+              <ServicesList />
             </Route>
           </Switch>
+          <Redirect from="/dashboard" to="/servicelist" />
         </Router>
       </div>
     </UserContext.Provider>
