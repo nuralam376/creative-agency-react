@@ -5,8 +5,27 @@ import Sidebar from "../Dashboard/Sidebar/Sidebar";
 import { useForm } from "react-hook-form";
 
 const AddService = () => {
-  const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { register, handleSubmit, errors, reset } = useForm();
+
+  const onSubmit = (data) => {
+    const formData = new FormData();
+    formData.append("icon", data.file[0]);
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+
+    fetch("http://localhost:5000/addservice", {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          alert("Service added successfully");
+          reset();
+        }
+      });
+  };
+
   return (
     <div>
       <Row>
@@ -21,33 +40,44 @@ const AddService = () => {
               {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
               <Col md={6}>
                 {/* register your input into the hook by invoking the "register" function */}
-                <label htmlFor="servicetitle">Service Title</label>
+                <label htmlFor="title">Service Title</label>
                 <input
                   name="title"
-                  ref={register}
+                  ref={register({ required: true })}
                   className="form-control mb-3"
                 />
-                {errors.title && <span>This field is required</span>}
-
-                <label htmlFor="servicetitle">Description</label>
+                {errors.title && (
+                  <span className="text-danger">* This field is required</span>
+                )}
+                <br />
+                <label htmlFor="description">Description</label>
                 <textarea
                   name="description"
                   ref={register({ required: true })}
                   className="form-control mb-3"
                 />
                 {/* errors will return when field validation fails  */}
-                {errors.description && <span>This field is required</span>}
+                {errors.description && (
+                  <span className="text-danger">* This field is required</span>
+                )}
+                <br />
               </Col>
 
               <Col md={6}>
                 {/* register your input into the hook by invoking the "register" function */}
-                <label htmlFor="servicetitle">Service Title</label>
+                <label htmlFor="servicetitle">Icon</label>
                 <input
+                  type="file"
                   name="file"
-                  defaultValue="test"
-                  ref={register}
-                  className="form-control mb-3"
+                  ref={register({ required: true })}
+                  className="w-25 mb-2"
                 />
+                <br />
+                {/* errors will return when field validation fails  */}
+                {errors.file && (
+                  <span className="text-danger">* This field is required</span>
+                )}
+                <br />
                 <input type="submit" className="btn btn-success text-right " />
               </Col>
             </Row>
