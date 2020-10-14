@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Image } from "react-bootstrap";
 
 const ServiceDetails = ({ service }) => {
-  const { icon, name, description } = service;
+  const { iconImage, name, description } = service;
 
   return (
     <Col
@@ -11,7 +11,7 @@ const ServiceDetails = ({ service }) => {
       className="my-5"
     >
       <Image
-        src={icon}
+        src={`data:image/png;base64,${iconImage.img}`}
         className="img-fluid"
         style={{ height: "100px", width: "100px", margin: "auto" }}
       />
