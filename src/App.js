@@ -10,6 +10,8 @@ import MakeAdmin from "./components/MakeAdmin/MakeAdmin";
 import Order from "./components/Order/Order";
 import Review from "./components/Review/Review";
 import ClientServiceList from "./components/ClientServiceList/ClientServiceList";
+import NotFound from "./components/NotFound/NotFound";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 export const UserContext = createContext();
 
@@ -33,23 +35,26 @@ function App() {
             <Route exact path="/login">
               <Login />
             </Route>
-            <Route exact path="/dashboard">
+            <PrivateRoute exact path="/dashboard">
               <ServicesList />
-            </Route>
-            <Route exact path="/servicelist">
+            </PrivateRoute>
+            <PrivateRoute exact path="/servicelist">
               <ClientServiceList />
-            </Route>
-            <Route exact path="/addservice">
+            </PrivateRoute>
+            <PrivateRoute exact path="/addservice">
               <AddService />
-            </Route>
-            <Route exact path="/makeadmin">
+            </PrivateRoute>
+            <PrivateRoute exact path="/makeadmin">
               <MakeAdmin />
-            </Route>
-            <Route exact path="/order">
+            </PrivateRoute>
+            <PrivateRoute exact path="/order">
               <Order />
-            </Route>
-            <Route exact path="/review">
+            </PrivateRoute>
+            <PrivateRoute exact path="/review">
               <Review />
+            </PrivateRoute>
+            <Route path="*">
+              <NotFound />
             </Route>
           </Switch>
         </Router>

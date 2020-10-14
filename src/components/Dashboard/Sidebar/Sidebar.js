@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Image, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../../App";
 import logo from "../../../images/logos/logo.png";
 import "./Sidebar.css";
 
 const Sidebar = () => {
+  const [loggedInUser] = useContext(UserContext);
+
   return (
     <div>
       <Nav className="d-block sidebar">
@@ -18,26 +21,33 @@ const Sidebar = () => {
             Service List
           </Link>
         </Nav.Item>
-        <Nav.Item>
-          <Link to="/addservice" className="nav-link text-dark">
-            Add Service
-          </Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Link to="/makeadmin" className="nav-link text-dark">
-            Make Admin
-          </Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Link to="/order" className="nav-link text-dark">
-            Order
-          </Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Link to="/review" className="nav-link text-dark">
-            Review
-          </Link>
-        </Nav.Item>
+        {loggedInUser.isAdmin === true ? (
+          <>
+            <Nav.Item>
+              <Link to="/addservice" className="nav-link text-dark">
+                Add Service
+              </Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Link to="/makeadmin" className="nav-link text-dark">
+                Make Admin
+              </Link>
+            </Nav.Item>
+          </>
+        ) : (
+          <>
+            <Nav.Item>
+              <Link to="/order" className="nav-link text-dark">
+                Order
+              </Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Link to="/review" className="nav-link text-dark">
+                Review
+              </Link>
+            </Nav.Item>
+          </>
+        )}
       </Nav>
     </div>
   );

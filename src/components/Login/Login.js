@@ -15,7 +15,7 @@ const Login = () => {
   const { from } = location.state || { from: { pathname: "/dashboard" } };
 
   const isAdminCheck = (email) => {
-    fetch("http://localhost:5000/isAdminCheck", {
+    return fetch("http://localhost:5000/isAdminCheck", {
       method: "POST",
       body: JSON.stringify({ email }),
       headers: {
@@ -24,7 +24,7 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setLoggedInUser({ ...loggedInUser, isAdmin: data });
+        return data;
       })
       .catch(() => alert("Something went wrong"));
   };
@@ -39,9 +39,11 @@ const Login = () => {
           userInfo.email = result.email;
           userInfo.image = result.photoURL;
           userInfo.error = null;
-          setLoggedInUser(userInfo);
-          isAdminCheck(result.email);
-          history.replace(from);
+          isAdminCheck(result.email).then((data) => {
+            userInfo.isAdmin = data;
+            setLoggedInUser(userInfo);
+            history.replace(from);
+          });
         } else {
           userInfo.error = result;
         }
