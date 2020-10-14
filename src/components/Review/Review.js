@@ -1,12 +1,33 @@
 import React from "react";
+import { useContext } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { UserContext } from "../../App";
 import DashboardHeader from "../Dashboard/DashboardHeader/DashboardHeader";
 import Sidebar from "../Dashboard/Sidebar/Sidebar";
 
 const Review = () => {
-  const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const [loggedInUser] = useContext(UserContext);
+  const { register, handleSubmit, reset, errors } = useForm();
+
+  const onSubmit = (data) => {
+    data.image = loggedInUser.image;
+    fetch("http://localhost:5000/addreview", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          alert("Review added successfully");
+          reset();
+        }
+      })
+      .catch(() => alert("Something went wrong"));
+  };
 
   return (
     <div>
@@ -20,9 +41,11 @@ const Review = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
               name="name"
+              defaultValue={loggedInUser.name}
               ref={register({ required: true })}
               className="form-control w-50"
               placeholder="Your name"
+              readOnly
             />
             {/* errors will return when field validation fails  */}
             {errors.name && <span>This field is required</span>}
@@ -41,24 +64,14 @@ const Review = () => {
               name="description"
               ref={register({ required: true })}
               className="form-control w-50"
-              placeholder="Project Details"
+              placeholder="Description"
             />
             {/* errors will return when field validation fails  */}
             {errors.description && <span>This field is required</span>}
             <br />
 
-            <input
-              type="file"
-              name="detail"
-              ref={register({ required: true })}
-              className="w-25"
-              placeholder="Project Details"
-            />
-            {/* errors will return when field validation fails  */}
-            {errors.file && <span>This field is required</span>}
             <br />
-            <br />
-            <input type="submit" className="btn btn-dark d-block" />
+            <input type="submit" value="Submit" className="btn btn-dark" />
           </form>
         </Col>
       </Row>
