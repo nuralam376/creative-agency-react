@@ -8,6 +8,7 @@ import ServicesList from "./components/ServicesList/ServicesList";
 import AddService from "./components/AddService/AddService";
 import MakeAdmin from "./components/MakeAdmin/MakeAdmin";
 import Order from "./components/Order/Order";
+import Review from "./components/Review/Review";
 
 export const UserContext = createContext();
 
@@ -43,6 +44,9 @@ function App() {
             </Route>
             <Route exact path="/order">
               <Order />
+            </Route>
+            <Route exact path="/review">
+              <Review />
             </Route>
           </Switch>
         </Router>
