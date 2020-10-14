@@ -15,7 +15,7 @@ const Review = () => {
           <Sidebar />
         </Col>
         <Col md={10} sm={10} xs={10}>
-          <DashboardHeader title="Make Admin" />
+          <DashboardHeader title="Review" />
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <input

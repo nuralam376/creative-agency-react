@@ -5,7 +5,7 @@ import services2 from "../../../images/icons/service2.png";
 import services3 from "../../../images/icons/service3.png";
 import ServiceDetails from "../ServiceDeatils/ServiceDetails";
 
-const servicesData = [
+export const servicesData = [
   {
     id: 1,
     icon: services1,

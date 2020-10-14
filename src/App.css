@@ -6,3 +6,11 @@ body {
   box-shadow: 10px 10px 10px white;
   padding: 20px;
 }
+
+@media (max-width: 768px) {
+  .responsive-dashboard {
+    margin: 0px auto 0px 200px;
+    text-align: center;
+    width: 50%;
+  }
+}

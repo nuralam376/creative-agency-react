@@ -9,6 +9,7 @@ import AddService from "./components/AddService/AddService";
 import MakeAdmin from "./components/MakeAdmin/MakeAdmin";
 import Order from "./components/Order/Order";
 import Review from "./components/Review/Review";
+import ClientServiceList from "./components/ClientServiceList/ClientServiceList";
 
 export const UserContext = createContext();
 
@@ -34,7 +35,7 @@ function App() {
               <ServicesList />
             </Route>
             <Route exact path="/servicelist">
-              <ServicesList />
+              <ClientServiceList />
             </Route>
             <Route exact path="/addservice">
               <AddService />
