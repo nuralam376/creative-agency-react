@@ -47,7 +47,7 @@ function App() {
             <PrivateRoute exact path="/makeadmin">
               <MakeAdmin />
             </PrivateRoute>
-            <PrivateRoute exact path="/order">
+            <PrivateRoute exact path="/order/:id">
               <Order />
             </PrivateRoute>
             <PrivateRoute exact path="/review">

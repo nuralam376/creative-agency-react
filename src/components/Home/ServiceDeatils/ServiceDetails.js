@@ -1,8 +1,9 @@
 import React from "react";
 import { Col, Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const ServiceDetails = ({ service }) => {
-  const { iconImage, name, description } = service;
+  const { _id, iconImage, title, description } = service;
 
   return (
     <Col
@@ -10,13 +11,15 @@ const ServiceDetails = ({ service }) => {
       style={{ backgroundColor: "white", padding: "20px" }}
       className="my-5"
     >
-      <Image
-        src={`data:image/png;base64,${iconImage.img}`}
-        className="img-fluid"
-        style={{ height: "100px", width: "100px", margin: "auto" }}
-      />
-      <h4 className="mt-3">{name}</h4>
-      <p>{description}</p>
+      <Link to={`/order/${_id}`} className="nav-link text-dark">
+        <Image
+          src={`data:image/png;base64,${iconImage.img}`}
+          className="img-fluid"
+          style={{ height: "100px", width: "100px", margin: "auto" }}
+        />
+        <h4 className="mt-3">{title}</h4>
+        <p>{description}</p>
+      </Link>
     </Col>
   );
 };

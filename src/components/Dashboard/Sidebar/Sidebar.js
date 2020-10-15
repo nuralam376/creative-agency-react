@@ -40,7 +40,10 @@ const Sidebar = () => {
         ) : (
           <>
             <Nav.Item>
-              <Link to="/order" className="nav-link text-dark">
+              <Link
+                to="/order/5f86a6553663052ec4775aaa"
+                className="nav-link text-dark"
+              >
                 Order
               </Link>
             </Nav.Item>

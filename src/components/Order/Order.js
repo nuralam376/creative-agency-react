@@ -1,12 +1,56 @@
 import React from "react";
+import { useContext } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { Link, useHistory, useParams } from "react-router-dom";
+import { UserContext } from "../../App";
 import DashboardHeader from "../Dashboard/DashboardHeader/DashboardHeader";
 import Sidebar from "../Dashboard/Sidebar/Sidebar";
 
 const Order = () => {
-  const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { id } = useParams();
+  const [service, setService] = useState({});
+  const [loggedInUser] = useContext(UserContext);
+  const history = useHistory();
+
+  const { register, handleSubmit, reset, errors } = useForm();
+
+  const onSubmit = (data) => {
+    const formData = new FormData();
+    formData.append("project", data.file[0]);
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("service", data.service);
+    formData.append("detail", data.detail);
+    formData.append("price", data.price);
+
+    fetch("http://localhost:5000/addorder", {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          alert("Order placed successfully");
+          reset();
+          history.push("/clientservicelist");
+        }
+      });
+  };
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/service/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setService(data);
+      })
+      .catch(() => {
+        setService({});
+        alert("Select a service");
+      });
+  }, [id]);
 
   return (
     <div>
@@ -17,75 +61,101 @@ const Order = () => {
         <Col md={10} sm={10} xs={10}>
           <DashboardHeader title="Order" />
 
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              name="name"
-              ref={register({ required: true })}
-              className="form-control w-50"
-              placeholder="Your name / company’s name"
-            />
-            {/* errors will return when field validation fails  */}
-            {errors.name && <span>This field is required</span>}
-            <br />
-            <input
-              name="email"
-              ref={register({
-                required: true,
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "invalid email address",
-                },
-              })}
-              className="form-control w-50"
-              placeholder="Your email address"
-            />
-            {/* errors will return when field validation fails  */}
-            {errors.email && <span>This field is required</span>}
-            <br />
-            <input
-              name="service"
-              ref={register({ required: true })}
-              className="form-control w-50"
-              placeholder="Graphic Design"
-            />
-            {/* errors will return when field validation fails  */}
-            {errors.service && <span>This field is required</span>}
-            <br />
-            <textarea
-              name="detail"
-              ref={register({ required: true })}
-              className="form-control w-50"
-              placeholder="Project Details"
-            />
-            {/* errors will return when field validation fails  */}
-            {errors.detail && <span>This field is required</span>}
-            <br />
-            <input
-              name="price"
-              ref={register({ required: true })}
-              className="form-control w-50"
-              placeholder="Price"
-            />
-            {/* errors will return when field validation fails  */}
-            {errors.price && <span>This field is required</span>}
-            <br />
-            <input
-              type="file"
-              name="detail"
-              ref={register({ required: true })}
-              className="w-25"
-              placeholder="Project Details"
-            />
-            {/* errors will return when field validation fails  */}
-            {errors.file && <span>This field is required</span>}
-            <br />
-            <br />
-            <input
-              type="submit"
-              className="btn btn-dark d-block"
-              value="Send"
-            />
-          </form>
+          {service._id ? (
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <input
+                name="name"
+                defaultValue={loggedInUser.name}
+                ref={register({ required: true })}
+                className="form-control w-50"
+                placeholder="Your name / company’s name"
+                readOnly
+              />
+              {/* errors will return when field validation fails  */}
+              {errors.name && (
+                <span className="text-danger">* This field is required</span>
+              )}
+              <br />
+              <input
+                name="email"
+                defaultValue={loggedInUser.email}
+                ref={register({
+                  required: true,
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "invalid email address",
+                  },
+                })}
+                className="form-control w-50"
+                placeholder="Your email address"
+                readOnly
+              />
+              {/* errors will return when field validation fails  */}
+              {errors.email && (
+                <span className="text-danger">* This field is required</span>
+              )}
+              <br />
+              <input
+                name="service"
+                defaultValue={service.title}
+                ref={register({ required: true })}
+                className="form-control w-50"
+                placeholder="Graphic Design"
+                readOnly
+              />
+              {/* errors will return when field validation fails  */}
+              {errors.service && (
+                <span className="text-danger">* This field is required</span>
+              )}
+              <br />
+              <textarea
+                name="detail"
+                ref={register({ required: true })}
+                className="form-control w-50"
+                placeholder="Project Details"
+              />
+              {/* errors will return when field validation fails  */}
+              {errors.detail && (
+                <span className="text-danger">* This field is required</span>
+              )}
+              <br />
+              <input
+                name="price"
+                ref={register({ required: true })}
+                className="form-control w-50"
+                placeholder="Price"
+              />
+              {/* errors will return when field validation fails  */}
+              {errors.price && (
+                <span className="text-danger">* This field is required</span>
+              )}
+              <br />
+              <label htmlFor="project">Project Screenshot</label>
+              <br />
+              <input
+                type="file"
+                name="file"
+                ref={register({ required: true })}
+                className="w-25"
+              />
+              <br />
+              {/* errors will return when field validation fails  */}
+              {errors.file && (
+                <span className="text-danger">* This field is required</span>
+              )}
+              <br />
+              <br />
+              <input
+                type="submit"
+                className="btn btn-dark d-block"
+                value="Send"
+              />
+            </form>
+          ) : (
+            <h3>
+              Select a service from <Link to="/">Home Page</Link> to order
+            </h3>
+          )}
         </Col>
       </Row>
     </div>
