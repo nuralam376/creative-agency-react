@@ -2,7 +2,7 @@ import React from "react";
 import { Alert, Col, Image, Row } from "react-bootstrap";
 
 const ClientServiceData = ({ service }) => {
-  const { icon, name, description } = service;
+  const { service: serviceName, detail, status, projectImage } = service;
 
   return (
     <Col
@@ -12,17 +12,17 @@ const ClientServiceData = ({ service }) => {
       <Row>
         <Col>
           <Image
-            src={icon}
+            src={`data:image/png;base64,${projectImage.img}`}
             className="img-fluid"
             style={{ height: "100px", width: "100px", margin: "auto" }}
           />
         </Col>
         <Col>
-          <Alert variant="danger">Pending</Alert>
+          <Alert variant="info">{status.toUpperCase()}</Alert>
         </Col>
       </Row>
-      <h4 className="mt-3">{name}</h4>
-      <p>{description}</p>
+      <h4 className="mt-3">{serviceName}</h4>
+      <p>{detail}</p>
     </Col>
   );
 };
