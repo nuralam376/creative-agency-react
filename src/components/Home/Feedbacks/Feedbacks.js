@@ -5,12 +5,16 @@ import { Container, Row } from "react-bootstrap";
 import ClientFeedback from "../ClientFeedback/ClientFeedback";
 
 const Feedbacks = () => {
+  const [loading, setLoading] = useState(true);
   const [clientsFeedbacks, setClientsFeedbacks] = useState([]);
 
   useEffect(() => {
     fetch("https://creative-agency1.herokuapp.com/allreviews")
       .then((res) => res.json())
-      .then((data) => setClientsFeedbacks(data))
+      .then((data) => {
+        setLoading(false);
+        setClientsFeedbacks(data);
+      })
       .catch(() => alert("Something went wrong"));
   }, []);
 
@@ -21,6 +25,8 @@ const Feedbacks = () => {
       </h2>
       <Container>
         <Row>
+          {loading && <h2 className="text-info">Loading... Please Wait...</h2>}
+
           {clientsFeedbacks.map((clientFeedback) => (
             <ClientFeedback
               key={clientFeedback._id}

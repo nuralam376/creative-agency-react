@@ -58,7 +58,7 @@ const Order = () => {
         <Col md={2} sm={2} xs={2}>
           <Sidebar />
         </Col>
-        <Col md={10} sm={10} xs={10}>
+        <Col md={10} sm={10} xs={10} className="responsive-dashboard">
           <DashboardHeader title="Order" />
 
           {service._id ? (

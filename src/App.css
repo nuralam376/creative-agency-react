@@ -9,9 +9,12 @@ body {
 
 @media (max-width: 768px) {
   .responsive-dashboard {
-    margin: 0px auto 0px 200px;
-    text-align: center;
-    width: 50%;
+    margin-left: 150px !important;
+    width: 50% !important;
+    margin-right: auto !important;
+  }
+  form {
+    width: 50% !important;
   }
 }
 

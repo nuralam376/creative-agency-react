@@ -10,6 +10,7 @@ import ClientServiceData from "../ClientServiceData/ClientServiceData";
 
 const ClientServiceList = () => {
   const [loggedInUser] = useContext(UserContext);
+  const [loading, setLoading] = useState(true);
   const [servicesData, setServicesData] = useState([]);
 
   useEffect(() => {
@@ -21,7 +22,10 @@ const ClientServiceList = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => setServicesData(data))
+      .then((data) => {
+        setServicesData(data);
+        setLoading(false);
+      })
       .catch(() => alert("Something went wrong"));
   }, [loggedInUser]);
 
@@ -35,6 +39,9 @@ const ClientServiceList = () => {
           <DashboardHeader title="All Orders" />
 
           <Row>
+            {loading && (
+              <h2 className="text-info">Loading... Please Wait...</h2>
+            )}
             {servicesData.map((service) => (
               <ClientServiceData key={service._id} service={service} />
             ))}

@@ -6,15 +6,15 @@ const DashboardHeader = ({ title }) => {
   const [loggedInUser] = useContext(UserContext);
   return (
     <div className="d-flex justify-content-between mb-5">
-      <h2>{title}</h2>
-      <h4>
+      <h3>{title}</h3>
+      <h5>
         <Image
           src={loggedInUser.image}
           roundedCircle
           style={{ width: "15%" }}
         />
         {loggedInUser.name}
-      </h4>
+      </h5>
     </div>
   );
 };
