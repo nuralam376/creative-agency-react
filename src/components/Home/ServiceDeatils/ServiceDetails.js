@@ -8,7 +8,11 @@ const ServiceDetails = ({ service }) => {
   const { _id, iconImage, title, description } = service;
 
   return (
-    <Col md={{ span: 3, offset: 1 }} className="my-5 service-box">
+    <Col
+      md={{ span: 3, offset: 1 }}
+      sm={{ span: 5, offset: 1 }}
+      className="my-5 service-box"
+    >
       <Link to={`/order/${_id}`} className="nav-link text-dark">
         <Image
           src={`data:image/png;base64,${iconImage.img}`}

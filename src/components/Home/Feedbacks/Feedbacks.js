@@ -4,33 +4,6 @@ import { useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import ClientFeedback from "../ClientFeedback/ClientFeedback";
 
-// const clientsFeedbacks = [
-//   {
-//     id: 1,
-//     name: "Nash Patrik",
-//     designation: "CEO, Manpol",
-//     message:
-//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus commodo ipsum duis laoreet maecenas. Feugiat ",
-//     image: Customer1,
-//   },
-//   {
-//     id: 2,
-//     name: "Miriam Barron",
-//     designation: "CEO, Manpol",
-//     message:
-//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus commodo ipsum duis laoreet maecenas. Feugiat ",
-//     image: Customer2,
-//   },
-//   {
-//     id: 3,
-//     name: "Bria Malone",
-//     designation: "CEO, Manpol",
-//     message:
-//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus commodo ipsum duis laoreet maecenas. Feugiat ",
-//     image: Customer3,
-//   },
-// ];
-
 const Feedbacks = () => {
   const [clientsFeedbacks, setClientsFeedbacks] = useState([]);
 

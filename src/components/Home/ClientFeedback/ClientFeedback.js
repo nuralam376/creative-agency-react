@@ -6,6 +6,7 @@ const ClientFeedback = ({ clientFeedback }) => {
   return (
     <Col
       md={{ span: 3, offset: 1 }}
+      sm={{ span: 5, offset: 1 }}
       className="my-5"
       style={{
         border: "1px solid #BFBFBF",

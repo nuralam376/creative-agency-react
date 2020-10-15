@@ -4,12 +4,12 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 const Contact = () => {
   return (
     <div
-      className="contact mt-5 px-5 pt-5"
+      className="contact mt-5 px-5 pt-5 pb-3"
       style={{ backgroundColor: "#FBD062" }}
     >
       <Container>
         <Row className="mb-5 align-self-center">
-          <Col>
+          <Col md={6} sm={12}>
             <h2>
               Let us handle your <br /> project, professionally.
             </h2>
@@ -18,7 +18,7 @@ const Contact = () => {
               mobile and web apps in general.
             </p>
           </Col>
-          <Col>
+          <Col md={6} sm={12}>
             <Form>
               <Form.Group controlId="formBasicEmail">
                 <Form.Control type="email" placeholder="Your email address" />

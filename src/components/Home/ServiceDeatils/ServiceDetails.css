@@ -26,5 +26,5 @@
 }
 
 .service-box:hover a img {
-  animation: bounce 5s infinite;
+  animation: bounce 3s infinite;
 }

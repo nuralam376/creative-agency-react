@@ -11,8 +11,8 @@ const Services = () => {
     fetch("https://creative-agency1.herokuapp.com/services")
       .then((res) => res.json())
       .then((data) => setServices(data))
-      .catch(() => {
-        alert("Something went wrong");
+      .catch((err) => {
+        console.log(err);
         window.location.reload(); // restarts the heroku server if idle
       });
   }, []);
