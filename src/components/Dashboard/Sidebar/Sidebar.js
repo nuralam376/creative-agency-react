@@ -3,6 +3,14 @@ import { Image, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../../App";
 import logo from "../../../images/logos/logo.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlus,
+  faShoppingBag,
+  faPeopleArrows,
+  faCartPlus,
+  faComments,
+} from "@fortawesome/free-solid-svg-icons";
 import "./Sidebar.css";
 
 const Sidebar = () => {
@@ -21,19 +29,19 @@ const Sidebar = () => {
             to={loggedInUser.isAdmin ? "/servicelist" : "/clientservicelist"}
             className="nav-link text-dark"
           >
-            Service List
+            <FontAwesomeIcon icon={faShoppingBag} /> Service List
           </Link>
         </Nav.Item>
         {loggedInUser.isAdmin === true ? (
           <>
             <Nav.Item>
               <Link to="/addservice" className="nav-link text-dark">
-                Add Service
+                <FontAwesomeIcon icon={faPlus} /> Add Service
               </Link>
             </Nav.Item>
             <Nav.Item>
               <Link to="/makeadmin" className="nav-link text-dark">
-                Make Admin
+                <FontAwesomeIcon icon={faPeopleArrows} /> Make Admin
               </Link>
             </Nav.Item>
           </>
@@ -44,11 +52,12 @@ const Sidebar = () => {
                 to="/order/5f86a6553663052ec4775aaa"
                 className="nav-link text-dark"
               >
-                Order
+                <FontAwesomeIcon icon={faCartPlus} /> Order
               </Link>
             </Nav.Item>
             <Nav.Item>
               <Link to="/review" className="nav-link text-dark">
+                <FontAwesomeIcon icon={faComments} />
                 Review
               </Link>
             </Nav.Item>
