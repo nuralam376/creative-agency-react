@@ -1,26 +1,8 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
 
-const ServiceListDetail = ({ service }) => {
+const ServiceListDetail = ({ service, changeStatus }) => {
   const { _id, name, email, service: serviceName, detail, status } = service;
-  const history = useHistory();
-
-  const changeStatus = (state) => {
-    fetch("http://localhost:5000/changeorderstatus", {
-      method: "PATCH",
-      body: JSON.stringify({ id: _id, status: state }),
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json;charset=UTF-8",
-      },
-    })
-      .then(() => {
-        alert("Order changed successfully");
-        history.push("/servicelist");
-      })
-      .catch(() => alert("Somwthing went wrong"));
-  };
 
   return (
     <tr>
@@ -36,17 +18,17 @@ const ServiceListDetail = ({ service }) => {
 
           <Dropdown.Menu>
             {status !== "pending" && (
-              <Dropdown.Item onClick={() => changeStatus("pendong")}>
+              <Dropdown.Item onClick={() => changeStatus(_id, "pending")}>
                 Pending
               </Dropdown.Item>
             )}
             {status !== "ongoing" && (
-              <Dropdown.Item onClick={() => changeStatus("ongoing")}>
+              <Dropdown.Item onClick={() => changeStatus(_id, "ongoing")}>
                 Ongoing
               </Dropdown.Item>
             )}
             {status !== "done" && (
-              <Dropdown.Item onClick={() => changeStatus("done")}>
+              <Dropdown.Item onClick={() => changeStatus(_id, "done")}>
                 Done
               </Dropdown.Item>
             )}

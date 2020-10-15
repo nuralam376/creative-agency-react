@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   const isAdminCheck = (email) => {
-    return fetch("http://localhost:5000/isAdminCheck", {
+    return fetch("https://creative-agency1.herokuapp.com/isAdminCheck", {
       method: "POST",
       body: JSON.stringify({ email }),
       headers: {

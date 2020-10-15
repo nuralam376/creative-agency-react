@@ -3,7 +3,12 @@ import { createContext } from "react";
 import "./App.css";
 import Home from "./components/Home/Home/Home";
 import Login from "./components/Login/Login";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import ServicesList from "./components/ServicesList/ServicesList";
 import AddService from "./components/AddService/AddService";
 import MakeAdmin from "./components/MakeAdmin/MakeAdmin";
@@ -56,6 +61,7 @@ function App() {
             <Route path="*">
               <NotFound />
             </Route>
+            <Redirect from="/dashboard" to="/servicelist" />
           </Switch>
         </Router>
       </div>

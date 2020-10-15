@@ -10,7 +10,7 @@ const ServicesList = () => {
   const [orderServices, setOrderServices] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allorders", {
+    fetch("https://creative-agency1.herokuapp.com/allorders", {
       method: "POST",
       body: JSON.stringify({ email: "" }),
       headers: {
@@ -22,6 +22,23 @@ const ServicesList = () => {
       .catch(() => alert("Something went wrong"));
   }, []);
 
+  const changeStatus = (id, state) => {
+    fetch("https://creative-agency1.herokuapp.com/changeorderstatus", {
+      method: "PATCH",
+      body: JSON.stringify({ id: id, status: state }),
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json;charset=UTF-8",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setOrderServices(data);
+        alert("Order changed successfully");
+      })
+      .catch(() => alert("Somwthing went wrong"));
+  };
+
   return (
     <Row>
       <Col md={2} sm={2} xs={2}>
@@ -29,7 +46,7 @@ const ServicesList = () => {
       </Col>
       <Col md={10} sm={10} xs={10}>
         <DashboardHeader title="Services List" />
-        <Table>
+        <Table size="md" responsive>
           <thead>
             <tr>
               <th>Name</th>
@@ -41,7 +58,11 @@ const ServicesList = () => {
           </thead>
           <tbody>
             {orderServices.map((service) => (
-              <ServiceListDetail key={service._id} service={service} />
+              <ServiceListDetail
+                key={service._id}
+                service={service}
+                changeStatus={changeStatus}
+              />
             ))}
           </tbody>
         </Table>

@@ -13,7 +13,7 @@ const ClientServiceList = () => {
   const [servicesData, setServicesData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allorders", {
+    fetch("https://creative-agency1.herokuapp.com/allorders", {
       method: "POST",
       body: JSON.stringify({ email: loggedInUser.email }),
       headers: {

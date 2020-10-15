@@ -35,7 +35,7 @@ const Feedbacks = () => {
   const [clientsFeedbacks, setClientsFeedbacks] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allreviews")
+    fetch("https://creative-agency1.herokuapp.com/allreviews")
       .then((res) => res.json())
       .then((data) => setClientsFeedbacks(data))
       .catch(() => alert("Something went wrong"));

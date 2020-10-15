@@ -8,10 +8,13 @@ const Services = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/services")
+    fetch("https://creative-agency1.herokuapp.com/services")
       .then((res) => res.json())
       .then((data) => setServices(data))
-      .catch(() => alert("Something went wrong"));
+      .catch(() => {
+        alert("Something went wrong");
+        window.location.reload(); // restarts the heroku server if idle
+      });
   }, []);
 
   return (

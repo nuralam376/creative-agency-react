@@ -26,7 +26,7 @@ const Order = () => {
     formData.append("detail", data.detail);
     formData.append("price", data.price);
 
-    fetch("http://localhost:5000/addorder", {
+    fetch("https://creative-agency1.herokuapp.com/addorder", {
       method: "POST",
       body: formData,
     })
@@ -41,7 +41,7 @@ const Order = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/service/${id}`)
+    fetch(`https://creative-agency1.herokuapp.com/service/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setService(data);
