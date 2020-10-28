@@ -12,7 +12,7 @@
 8. Admin can change the status of ordered services.
 
 [Portfolio][portfolio]
-[Resume] [resume]
+[Resume][resume]
 
 [portfolio]: https://nur-a-alam.me/
 [resume]: https://drive.google.com/file/d/1JUzoOcAMR58wOuVWR4SZVVl4rrk3_UYb/view
