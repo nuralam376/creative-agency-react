@@ -11,5 +11,9 @@
 7. Admin can create a new service.
 8. Admin can change the status of ordered services.
 
-[Portfolio] (http://nur-a-alam.me/)
-[Resume] (https://drive.google.com/file/d/1JUzoOcAMR58wOuVWR4SZVVl4rrk3_UYb/view)
+[Portfolio][portfolio]
+[Resume] [resume]
+
+[portfolio]: (https://nur-a-alam.me/)
+
+[resume]: [https://drive.google.com/file/d/1JUzoOcAMR58wOuVWR4SZVVl4rrk3_UYb/view]
