@@ -1,6 +1,6 @@
 # Creative Agency
 
-[Live Website] (https://creative-agency-2b509.firebaseapp.com/)
+##Live Website (https://creative-agency-2b509.firebaseapp.com/)
 
 1. Different services showcase on the homepage
 2. Customers can order services.
@@ -11,8 +11,10 @@
 7. Admin can create a new service.
 8. Admin can change the status of ordered services.
 
+[Server Code][server]
 [Portfolio][portfolio]
 [Resume][resume]
 
+[server]: https://github.com/nuralam376/creative-agency-server
 [portfolio]: https://nur-a-alam.me/
 [resume]: https://drive.google.com/file/d/1JUzoOcAMR58wOuVWR4SZVVl4rrk3_UYb/view
