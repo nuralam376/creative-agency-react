@@ -2,6 +2,13 @@
 
 ## Live Website (https://creative-agency-2b509.firebaseapp.com/)
 
+#### Technology Used -
+
+1. React.js
+2. Firebase
+
+#### Features -
+
 1. Different services showcase on the homepage
 2. Customers can order services.
 3. Customers need to login using google to order any services.
