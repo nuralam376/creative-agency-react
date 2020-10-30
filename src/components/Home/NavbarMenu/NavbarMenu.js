@@ -20,7 +20,7 @@ const NavbarMenu = () => {
             <Link to="/" className="nav-link">
               Home
             </Link>
-            <Link to="/" className="nav-link">
+            {/* <Link to="/" className="nav-link">
               Our Portfolio
             </Link>
             <Link to="/" className="nav-link">
@@ -28,7 +28,7 @@ const NavbarMenu = () => {
             </Link>
             <Link to="/" className="nav-link">
               Our Team
-            </Link>
+            </Link> */}
           </Nav>
 
           {loggedInUser.isLoggedIn ? (
